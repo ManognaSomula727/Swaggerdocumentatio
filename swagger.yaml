@@ -1,0 +1,234 @@
+swagger: "2.0"
+info:
+  description: "This is a sample api"
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+
+schemes:
+- "http"
+paths:
+  /lenders:
+    get:
+      tags:
+      - "lenders"
+      summary: "Add a lenders"
+      description: ""
+      operationId: "addPet"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "ok"
+          schema:
+           type: "array"
+           items:
+            $ref: "#/definitions/lenders"
+    post:
+      tags:
+      - "lenders"
+      summary: "Creates list of users with given input array"
+      description: ""
+      operationId: "createUsersWithListInput"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/accept"
+      responses:
+         201:
+           description: "CREATED"
+         409:
+           description: "Conflict"
+  /lenders{lenderId}:
+     get:
+      tags:
+      - "lenders"
+      summary: "Update an lenders{lenderid}"
+      description: "hi"
+      operationId: "updatePet"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "lenderId"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+              $ref: "#/definitions/lenders"
+        404:
+          description: "not found"
+  /lenders/{lenderId}:
+     put:
+      tags:
+       - "lenders"
+      summary: " put the lenders"
+      description: "hi"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "lenderId"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/lenders"
+      responses:
+         201:
+           description: "No content"
+         409:
+           description: "Not Found"
+     delete:
+      tags: 
+      - "lenders"
+      summary: " delete the lenders"
+      description: "hi"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "lenderId"
+        description: "List of user object"
+        required: true
+        type: "integer"
+      responses:
+         201:
+           description: "NO CONTENT"
+         409:
+           description: "Not found"
+     head:
+       tags:
+       - "lenders"
+       summary: " put the lenders"
+       description: "hi"
+       produces:
+       - "application/json"
+       parameters:
+       - in: "path"
+         name: "lenderId"
+         description: "List of user object"
+         required: true
+         type: "integer"
+       responses:
+         200:
+           description: "OK"
+         409:
+           description: "Not found"
+  /lenders/{lenderId}/status:
+     patch:
+      tags:
+      - "lenders"
+      summary: "Status an lenders{lenderid}"
+      description: "hi"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "lenderId"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "List of user object"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/update"
+      responses:
+        200:
+          description: "NO CONTENT"
+          
+        404:
+          description: "NOT FOUND" 
+  
+        
+         
+  
+definitions:
+  lenders:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      Address:
+        $ref: "#/definitions/Address"
+      status:
+        type: "string"
+        description: "active"
+      createdBy:
+        type: "string"
+      createdDate: 
+         type: "string"
+         format: "date-time"
+      updatedBy:
+         type: "string"
+      updatedDate:
+         type: "string"
+         format: "date-time"
+  Address:
+    type: "object"
+    properties:
+     street:
+        type: "integer"
+     city:
+        type: "string"
+     state:
+        type: "string"
+     zipcode: 
+        type: "integer"
+     country:
+        type: "string"
+        
+  accept:
+     type: "object"
+     properties:
+      name:
+        type: "string"
+      address:
+         type: "string"
+         
+  update:
+      type: "object"
+      properties:
+       id:
+        type: "integer"
+       status:
+         type: "string"
+        
+
+  
+   
+  
+  
